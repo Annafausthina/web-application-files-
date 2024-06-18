@@ -3,324 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Student Details</title>
+    <title>Students Portal Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <style>
+        /* Importing Google font - Poppins */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
-  /* Importing Google font - Poppins */
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}
+        body {
+            min-height: 100vh;
+            background-image: url(Copy-of-BINUS-Apa-Itu-Strategi-Marketing-Communication-dan-Contoh-Penerapannya_\ -\ Copy.jpg);
+            display: flex;
+        }
 
-body {
-    min-height: 100vh;
-    background-image: url(Copy-of-BINUS-Apa-Itu-Strategi-Marketing-Communication-dan-Contoh-Penerapannya_\ -\ Copy.jpg);
-    display: flex;
-}
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 85px;
+            display: flex;
+            overflow-x: hidden;
+            flex-direction: column;
+            background: #161a2d;
+            padding: 25px 20px;
+            transition: all 0.4s ease;
+        }
 
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 85px;
-    display: flex;
-    overflow-x: hidden;
-    flex-direction: column;
-    background: #161a2d;
-    padding: 25px 20px;
-    transition: all 0.4s ease;
-}
+        .sidebar .logo-container {
+            text-align: center;
+            padding: 15px 10;
+            display: flex;
+        }
 
-.sidebar:hover {
-    width: 260px;
-}
+        .sidebar:hover {
+            width: 260px;
+        }
 
-.sidebar .logo-container {
-    text-align: center;
-    padding: 15px 0;
-    display: flex;
-}
+        .sidebar .sidebar-header img {
+            margin-top: auto;
+            padding: 28px 10px;
+            margin-left: -30px;
+        }
 
-.sidebar .sidebar-header img {
-    margin-top: auto;
-    padding: 28px 10px;
-    margin-left: -30px;
-}
+        .sidebar .sidebar-header {
+            display: flex;
+            align-items: center;
+        }
 
-.sidebar .sidebar-header {
-    display: flex;
-    align-items: center;
-}
+        .sidebar .sidebar-header .logo-container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
 
-.sidebar .sidebar-header .logo-container img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-}
+        .sidebar .sidebar-header h1 {
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            white-space: nowrap;
+            margin-left: 23px;
+        }
 
-.sidebar .sidebar-header h1 {
+        .sidebar:hover .sidebar-header .logo-container {
+            display: none;
+        }
+
+        .sidebar-links h3 {
+            color: #fff;
+            font-weight: 100;
+            white-space: nowrap;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .sidebar-links h3 span {
+            opacity: 0;
+        }
+
+        .sidebar:hover .sidebar-links h3 span {
+            opacity: 1;
+        }
+
+        .sidebar-links .menu-separator {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            transform: scaleX(1);
+            transform: translateY(-50%);
+            background: #4f52ba;
+            transform-origin: right;
+            transition-delay: 0.2s;
+        }
+
+        .sidebar:hover .sidebar-links .menu-separator {
+            transition-delay: 0s;
+            transform: scaleX(0);
+        }
+
+        .sidebar-links {
+            list-style: none;
+            margin-top: 20px;
+            height: 80%;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+
+        .sidebar-links::-webkit-scrollbar {
+            display: none;
+        }
+
+        .sidebar-links li a {
+            display: flex;
+            align-items: center;
+            gap: 0 20px;
+            color: #fff;
+            font-weight: 500;
+            white-space: nowrap;
+            padding: 15px 10px;
+            text-decoration: none;
+            transition: 0.2s ease;
+        }
+
+        .sidebar-links li a:hover {
+            color: #727792;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #050505;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #595a5a;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .content {
+            margin-left: 85px;
+            padding: 20px;
+            width: 100%;
+            transition: all 0.4s ease;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab-link {
+            background: #4f52ba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .tab-link:hover,
+        .tab-link.active {
+            background: #161a2d;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .filter-section {
+            margin-bottom: 20px;
+        }
+
+        .filter-section label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .filter-section .options {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end; /* Align buttons to the right */
+            align-items: center; /* Center align items vertically */
+            margin-top: 20px;
+        }
+
+        .button-container .back-button {
+            background-color: #4f52ba;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            margin-right: 20px; /* Adjust margin as needed */
+        }
+
+        .button-container .back-button:hover {
+            background-color: #161a2d;
+        }
+
+        .button-container button[type="submit"] {
+            background: #4f52ba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .button-container button[type="submit"]:hover {
+            background: #404e93;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9); /* White background with opacity */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto; /* Center align */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /*.form-group input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }*/
+        form button {
+    background-color: #146abf;
     color: #fff;
-    font-size: 1.25rem;
-    font-weight: 600;
-    white-space: nowrap;
-    margin-left: 23px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 30%;
+    height: 40px;
+    align-self: flex-end;
 }
-
-.sidebar:hover .sidebar-header .logo-container {
-    display: none;
-}
-
-.sidebar-links h3 {
-    color: #fff;
-    font-weight: 10OPX;
-    white-space: nowrap;
-    margin: 10px 0;
-    position: relative;
-}
-
-.sidebar-links h3 span {
-    opacity: 0;
-}
-
-.sidebar:hover .sidebar-links h3 span {
-    opacity: 1;
-}
-
-.sidebar-links .menu-separator {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 100%;
-    height: 1px;
-    transform: scaleX(1);
-    transform: translateY(-50%);
-    background: #4f52ba;
-    transform-origin: right;
-    transition-delay: 0.2s;
-}
-
-.sidebar:hover .sidebar-links .menu-separator {
-    transition-delay: 0s;
-    transform: scaleX(0);
-}
-
-.sidebar-links {
-    list-style: none;
-    margin-top: 20px;
-    height: 80%;
-    overflow-y: auto;
-    scrollbar-width: none;
-}
-
-.sidebar-links::-webkit-scrollbar {
-    display: none;
-}
-
-.sidebar-links li a {
-    display: flex;
-    align-items: center;
-    gap: 0 20px;
-    color: #fff;
-    font-weight: 500;
-    white-space: nowrap;
-    padding: 15px 10px;
-    text-decoration: none;
-    transition: 0.2s ease;
-}
-
-.sidebar-links li a:hover {
-    color: #727792;
-    background: #fff;
-    border-radius: 4px;
-}
-
-.sidebar-header .hide.brand.text {
-    display: none;
-}
-
-.sidebar-header .hide .brand.logo {
-    display: block;
-    width: 100%;
-    height: 75%;
-}
-
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #0a0a0a;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    top: 100%;
-    left: 0;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-    body {
-      background-image: url(Copy-of-BINUS-Apa-Itu-Strategi-Marketing-Communication-dan-Contoh-Penerapannya_\ -\ Copy.jpg);
-      font-family: Arial, sans-serif;
-      background-color: #0e0c0c;
-     
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-  }
-  
-  .form-container {
-      background-color: #ffffff;
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      width: 300px;
-  }
-  
-  .form-container h2 {
-      margin-bottom: 20px;
-      font-size: 1.5em;
-      text-align: center;
-  }
-  
-  .form-group {
-      margin-bottom: 15px;
-  }
-  
-  .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-  }
-  
-  .form-group input[type="text"] {
-      width: 100%;
-      padding: 8px;
-      box-sizing: border-box;
-      border: 1px solid #d79797;
-      border-radius: 4px;
-  }
-  
-  .form-group button {
-    background-color: #74afea;
-      width: 40%;
-      padding: 5px;
-  
-      border: none;
-      border-radius: 9px;
-      color: #f8f4fd;
-      font-size: 1em;
-      cursor: pointer;
-  }
-  
-  .form-group button:hover {
-    background-color: #022e5b;
-  }
-  </style>
-  </head>
-  <body>
-      <aside class="sidebar">
-          <div class="sidebar-header">
-              <div class="logo-container">
-                  <img src="logo.png" alt="logo" />
-              </div>
-              <h1>IMS</h1>
-          </div>
-          <ul class="sidebar-links">
-              <h3><span>Main Menu</span></h3>
-              <li>
-                  <div class="dropdown">
-                  <a href="file:///C:/Users/DBIT/Desktop/DASHBORAD/back.html">
-                      <span class="material-symbols-outlined">home</span>Home
-                  </a>
-                  </div>
-              </li>
-              <li>
-                  <div class="dropdown">
-                  <a href="file:///C:/Users/DBIT/Desktop/DASHBORAD/dashboard%2003_jun_2024.html">
-                      <span class="material-symbols-outlined">edit_note</span>New Enrolment
-                  </a>
-              </div>
-              </li>
-              <li>
-                  <div class="dropdown">
-                  <a href="file:///C:/Users/DBIT/Desktop/DASHBORAD/redio.html">
-                      <span class="material-symbols-outlined">filter_alt</span>Filters
-                  </a>
-              </div>
-              </li>
-              <li>
-                  <div class="dropdown">
-                      <a href="file:///C:/Users/DBIT/Desktop/DASHBORAD/Filters.html">
-                          <span class="material-symbols-outlined">ios_share</span>Update Details
-                      </a>
-                  </div>
-              </li>
-              <li>
-                  <a href="#">
-                      <span class="material-symbols-outlined">delete</span>Delete Details
-                  </a>
-              </li>
-              <li>
-                  <div class="dropdown">
-                      <a href="#" >
-                          <span class="material-symbols-outlined">more_horiz</span>More
-                      </a>
-                      <div class="dropdown-content">
-                          <a href="#">Class</a>
-                          <a href="#">Dashboard</a>
-                          <a href="#">Tasks</a>
-                          <a href="#">Capstone</a>
-                          <a href="#">Queries</a>
-                          <a href="#">Requirements</a>
-                          <a href="#">Portfolio – Submission</a>
-                          <a href="#">Applications</a>
-                          <a href="#">Interview Tasks</a>
-                          <a href="#">Mock interviews</a>
-                          <a href="#">Leave – applications</a>
-                          <a href="#">Certificate</a>
-                          <a href="#">Testimonial</a>
-                          <a href="#">Leaderboard</a>
-                          <a href="#">Placement</a>
-                      </div>
-                  </div>
-              </li>
-          </ul>
-      </aside>
-    <div class="form-container">
-        <h2>Update Student Details</h2>
-        <br>
-        <form action="submit_update_details.php" method="post">
-            <div class="form-group">
-                <label for="studentId">Student Id:</label>
-                <input type="text" id="studentId" name="studentId" required>
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <img src="circle logo with white background (1).png" alt="logo" />
             </div>
-            <div class="form-group">
-                <center><button text="submit"><a href="file:///C:/Users/DBIT/Desktop/home%20page%20login/update%20page%20after%20click%20page.html">Submit</button></a></center>
-            </div>
-        </form>
-    </div>
-</body>
-</html>
+            <h1>IMS</h1>
+        </div>
+        <ul class="sidebar-links">
+            <h3><span>Main Menu</span></h3>
+            <li>
+                <div class="dropdown">
+                    <a href="home%20page.html">
+                        <span class="material-symbols-outlined">home</span>Home
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="dropdown">
+                    <a href="file:///C:/Users/DBIT/Desktop/web%20application%20files%2C/New%20Enrolment.html">
+                        <span class="material-symbols-outlined">edit_note</span>New Enrolment
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="dropdown">
+                    <a href="filter%20page.html">
+                        <span class="material-symbols-outlined">filter_alt</span>Filters
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="dropdown">
+                    <a href="Update%20Student%20Details%20page.html">
+                        
+                        <span class="material-symbols-outlined">ios_share</span>Update Details
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="material-symbols-outlined">delete</span>Delete Details
+                    </a>
+                </li>
+                <li>
+                    <div class="dropdown">
+                        <a href="#">
+                            <span class="material-symbols-outlined">more_horiz</span>More
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="#">Class</a>
+                            <a href="#">Dashboard</a>
+                            <a href="#">Tasks</a>
+                            <a href="#">Capstone</a>
+                            <a href="#">Queries</a>
+                            <a href="#">Requirements</a>
+                            <a href="#">Portfolio – Submission</a>
+                            <a href="#">Applications</a>
+                            <a href="#">Interview Tasks</a>
+                            <a href="#">Mock interviews</a>
+                            <a href="#">Leave – applications</a>
+                            <a href="#">Certificate</a>
+                            <a href="#">Testimonial</a>
+                            <a href="#">Leaderboard</a>
+                            <a href="#">Placement</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+        <div class="content">
+            <section id="update-details">
+                <div class="form-container">
+                    <h2>Update Student Details</h2>
+                    <form action="submit_update_details.php" method="post">
+                        <div class="form-group">
+                            <label for="studentId">Student Id:</label>
+                            <input type="text" id="studentId" name="studentId" required>
+                        </div>
+                        <div class="button-container">
+                            <button text="Next"><a href="file:///C:/Users/DBIT/Desktop/web%20application%20files%2C/Update%20details%20after%20click.html">Submit</button></a>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </body>
+    </html>
